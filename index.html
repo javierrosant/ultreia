@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ultreia — Productora musical y creativa enfocada en el desarrollo de proyectos con identidad propia.">
+  <title>Ultreia</title>
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ── Background ──────────────────────────────────────── -->
+  <div class="site-bg" aria-hidden="true">
+    <!-- Swap <img> for <video autoplay muted loop playsinline> when ready -->
+    <img src="images/bg.jpg" alt="">
+  </div>
+
+  <!-- ── Navigation ──────────────────────────────────────── -->
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="index.html" class="nav__logo" aria-label="Ultreia — inicio">
+      <img src="images/logo.svg" alt="Ultreia">
+    </a>
+
+    <ul class="nav__links" role="list">
+      <li>
+        <button class="nav__link" data-menu="eventos" aria-expanded="false" aria-controls="menu-eventos">
+          Eventos
+        </button>
+      </li>
+      <li>
+        <button class="nav__link" data-menu="management" aria-expanded="false" aria-controls="menu-management">
+          Management
+        </button>
+      </li>
+      <li>
+        <button class="nav__link" data-menu="booking" aria-expanded="false" aria-controls="menu-booking">
+          Booking y Ticketing
+        </button>
+      </li>
+      <li>
+        <button class="nav__link" data-menu="festival" aria-expanded="false" aria-controls="menu-festival">
+          Festival
+        </button>
+      </li>
+      <li>
+        <button class="nav__link" data-menu="agenda" aria-expanded="false" aria-controls="menu-agenda">
+          Agenda
+        </button>
+      </li>
+    </ul>
+
+    <div class="nav__contact">
+      <a href="pages/contacto.html" class="nav__link">Contacto</a>
+    </div>
+  </nav>
+
+  <!-- ── Menu overlay ────────────────────────────────────── -->
+  <div class="menu-overlay" id="menu-overlay" aria-hidden="true">
+
+    <!-- Eventos -->
+    <div class="menu-panel" id="menu-eventos" role="region" aria-label="Eventos">
+      <!-- Col 1: Eventos Privados -->
+      <div class="menu-col">
+        <p class="menu-col__label">Eventos Privados</p>
+        <p class="menu-col__desc">
+          Nos encargamos de la gestión integral, definiendo la estrategia de venta de entradas
+          y coordinando la contratación de artistas. Desde la configuración de plataformas
+          hasta la negociación y el cierre de line-ups, trabajamos para que cada evento
+          funcione tanto a nivel creativo como comercial.
+        </p>
+        <ul class="menu-list" data-image-target="img-eventos">
+          <li class="menu-list__item" data-img="images/eventos/privado-01.jpg">Evento 001</li>
+          <li class="menu-list__item" data-img="images/eventos/privado-02.jpg">Evento 002</li>
+          <li class="menu-list__item" data-img="images/eventos/privado-03.jpg">Evento 003</li>
+          <li class="menu-list__item" data-img="images/eventos/privado-04.jpg">Evento 004</li>
+          <li class="menu-list__item" data-img="images/eventos/privado-05.jpg">Evento 005</li>
+        </ul>
+      </div>
+
+      <!-- Col 2: Eventos Públicos -->
+      <div class="menu-col">
+        <p class="menu-col__label">Eventos Públicos</p>
+        <p class="menu-col__desc">
+          Nos encargamos de la gestión integral, definiendo la estrategia de venta de entradas
+          y coordinando la contratación de artistas. Desde la configuración de plataformas
+          hasta la negociación y el cierre de line-ups, trabajamos para que cada evento
+          funcione tanto a nivel creativo como comercial.
+        </p>
+        <ul class="menu-list" data-image-target="img-eventos">
+          <li class="menu-list__item" data-img="images/eventos/publico-01.jpg">Evento 001</li>
+          <li class="menu-list__item" data-img="images/eventos/publico-02.jpg">Evento 002</li>
+          <li class="menu-list__item" data-img="images/eventos/publico-03.jpg">Evento 003</li>
+          <li class="menu-list__item" data-img="images/eventos/publico-04.jpg">Evento 004</li>
+          <li class="menu-list__item" data-img="images/eventos/publico-05.jpg">Evento 005</li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Image -->
+      <div class="menu-col menu-col--image">
+        <div class="menu-image" id="img-eventos">
+          <img src="" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+
+    <!-- Management -->
+    <div class="menu-panel" id="menu-management" role="region" aria-label="Management">
+      <!-- Col 1: Description + list -->
+      <div class="menu-col">
+        <p class="menu-col__desc">
+          Acompañamos a artistas en el desarrollo integral de su proyecto, conectándolos con
+          los profesionales adecuados en cada fase. Nos encargamos de coordinar y dar
+          coherencia a todo el proceso creativo y técnico, facilitando el acceso a una red
+          de colaboradores, productores, técnicos, creativos, que aportan valor real al
+          proyecto.
+        </p>
+        <ul class="menu-list" data-image-target="img-management">
+          <li class="menu-list__item" data-img="images/management/produccion.jpg">Producción musical</li>
+          <li class="menu-list__item" data-img="images/management/identidad.jpg">Desarrollo creativo / identidad visual</li>
+          <li class="menu-list__item" data-img="images/management/audiovisual.jpg">Proyectos audiovisuales</li>
+        </ul>
+      </div>
+
+      <!-- Col 2: empty spacer -->
+      <div class="menu-col"></div>
+
+      <!-- Col 3: Image -->
+      <div class="menu-col menu-col--image">
+        <div class="menu-image" id="img-management">
+          <img src="" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking y Ticketing -->
+    <div class="menu-panel" id="menu-booking" role="region" aria-label="Booking y Ticketing">
+      <!-- Col 1: Fixed text + link -->
+      <div class="menu-col">
+        <p class="menu-col__desc">
+          Nos encargamos de la gestión integral, definiendo la estrategia de venta de entradas
+          y coordinando la contratación de artistas. Desde la configuración de plataformas
+          hasta la negociación y el cierre de line-ups, trabajamos para que cada evento
+          funcione tanto a nivel creativo como comercial.
+        </p>
+        <span class="menu-list__link">Acceso a la ticketera</span>
+      </div>
+
+      <!-- Col 2: List -->
+      <div class="menu-col">
+        <ul class="menu-list" data-image-target="img-booking">
+          <li class="menu-list__item" data-img="images/booking/artistas.jpg">Búsqueda y selección de artistas</li>
+          <li class="menu-list__item" data-img="images/booking/caches.jpg">Cachés</li>
+          <li class="menu-list__item" data-img="images/booking/riders.jpg">Condiciones técnicas y Riders</li>
+          <li class="menu-list__item" data-img="images/booking/coordinacion.jpg">Coordinación de fechas, horarios y logística</li>
+          <li class="menu-list__item" data-img="images/booking/plataforma.jpg">Selección de plataforma de venta</li>
+          <li class="menu-list__item" data-img="images/booking/config.jpg">Configuración del evento</li>
+          <li class="menu-list__item" data-img="images/booking/aforo.jpg">Control de aforo</li>
+          <li class="menu-list__item" data-img="images/booking/fases.jpg">Definir fases de lanzamiento</li>
+          <li class="menu-list__item" data-img="images/booking/precios.jpg">Optimizar precios</li>
+          <li class="menu-list__item" data-img="images/booking/campanas.jpg">Coordinar campañas con marketing</li>
+          <li class="menu-list__item" data-img="images/booking/ventas.jpg">Análisis de ventas</li>
+          <li class="menu-list__item" data-img="images/booking/ajustes.jpg">Ajustes en tiempo real y Reportes</li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Image -->
+      <div class="menu-col menu-col--image">
+        <div class="menu-image" id="img-booking">
+          <img src="" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+
+    <!-- Festival -->
+    <div class="menu-panel" id="menu-festival" role="region" aria-label="Festival">
+      <!-- Col 1: Description + list -->
+      <div class="menu-col">
+        <p class="menu-col__desc">
+          De forma anual celebramos un evento que reúne a artistas, profesionales y agentes
+          del panorama musical con el objetivo de generar conexiones reales y dar forma a un
+          ecosistema creativo vivo.
+        </p>
+        <ul class="menu-list" data-image-target="img-festival">
+          <li class="menu-list__item" data-img="images/festival/2023.jpg">Ultreia 2023</li>
+          <li class="menu-list__item" data-img="images/festival/2025.jpg">Ultreia 2025</li>
+          <li class="menu-list__item" data-img="images/festival/2026.jpg">Ultreia 2026</li>
+        </ul>
+      </div>
+
+      <!-- Col 2+3: Wide image -->
+      <div class="menu-col--image-wide">
+        <div class="menu-image" id="img-festival">
+          <img src="" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+
+    <!-- Agenda -->
+    <div class="menu-panel" id="menu-agenda" role="region" aria-label="Agenda">
+      <div class="menu-col">
+        <p class="menu-col__desc">
+          Explora nuestra agenda y descubre a los artistas emergentes que están dando forma
+          a lo que viene. Una selección de proyectos con identidad propia, pensados para
+          conectar en directo.
+        </p>
+        <ul class="menu-list" data-image-target="img-agenda">
+          <li class="menu-list__item" data-img="images/agenda/mail.jpg">
+            <a href="mailto:info@ultreia.es">mail</a>
+          </li>
+          <li class="menu-list__item" data-img="images/agenda/instagram.jpg">
+            <a href="https://instagram.com/ultreia" target="_blank" rel="noopener">instagram</a>
+          </li>
+        </ul>
+      </div>
+      <div class="menu-col"></div>
+      <div class="menu-col menu-col--image">
+        <div class="menu-image" id="img-agenda">
+          <img src="" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /menu-overlay -->
+
+  <!-- ── Hero content ─────────────────────────────────────── -->
+  <main class="hero" id="main-content">
+    <p class="hero__text">
+      Productora musical y creativa enfocada en el desarrollo de proyectos con identidad
+      propia. Acompañamos a artistas y marcas en todo el proceso, desde la idea hasta la
+      ejecución final, creando piezas que conectan, emocionan y trascienden.
+    </p>
+  </main>
+
+  <!-- ── Footer bar ───────────────────────────────────────── -->
+  <footer class="footer-bar" role="contentinfo">
+    <div class="footer-bar__left"></div>
+    <div class="footer-bar__center">
+      By clicking 'Submit' you agree to our
+      <a href="pages/privacidad.html">Privacy Policy</a>
+      +
+      <a href="pages/terminos.html">Terms and Conditions</a>
+    </div>
+    <div class="footer-bar__right">
+      <span class="footer-bar__copy">©Ultreia[2026] [Design/Code]</span>
+      <a href="pages/contacto.html" class="footer-bar__cta">Contacta</a>
+    </div>
+  </footer>
+
+  <!-- ── Cookie Banner ────────────────────────────────────── -->
+  <div class="cookie-banner" id="cookie-banner" role="alert" aria-live="polite">
+    We use cookies to enhance your experience.
+    <button id="cookie-accept">Accept.</button>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
