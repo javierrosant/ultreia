@@ -291,16 +291,14 @@
     display: none;
   }
 
-  /* Hero text repositioned */
+  /* Hero text repositioned for mobile */
   .hero {
-    align-items: flex-end;
-    padding-bottom: calc(var(--footer-height) + 32px);
+    right: 24px;
+    bottom: calc(var(--footer-height) + 32px);
+    max-width: 280px;
   }
 
   .hero__text {
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0 24px;
     font-size: 0.75rem;
   }
 
