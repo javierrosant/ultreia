@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ultreia — Productora musical y creativa enfocada en el desarrollo de proyectos con identidad propia.">
+  <meta name="description" content="Ultreia - Productora musical y creativa enfocada en el desarrollo de proyectos con identidad propia.">
   <title>Ultreia</title>
 
   <link rel="stylesheet" href="css/reset.css">
@@ -13,385 +13,14 @@
 </head>
 <body>
 
-  <!-- ── Background ──────────────────────────────────────── -->
   <div class="site-bg" aria-hidden="true">
     <video autoplay muted loop playsinline>
       <source src="images/Video_de_fondo.mp4" type="video/mp4">
     </video>
   </div>
 
-  <!-- ── Navigation ──────────────────────────────────────── -->
-  <nav class="nav" aria-label="Navegación principal">
-    <a href="index.html" class="nav__logo" aria-label="Ultreia — inicio">
-      <img src="images/Ultreia_Festival2025_LOGO_BLANCO.svg" alt="Ultreia">
-    </a>
+  <div data-include="/partials/header.html"></div>
 
-    <ul class="nav__links" role="list">
-      <li>
-        <button class="nav__link" data-menu="eventos" aria-expanded="false" aria-controls="menu-eventos">
-          <span>Eventos</span>
-        </button>
-      </li>
-      <li>
-        <button class="nav__link" data-menu="conciertos" aria-expanded="false" aria-controls="menu-conciertos">
-          <span>Conciertos</span>
-        </button>
-      </li>
-      <li>
-        <button class="nav__link" data-menu="festival" aria-expanded="false" aria-controls="menu-festival">
-          <span>Festival</span>
-        </button>
-      </li>
-      <li>
-        <button class="nav__link" data-menu="management" aria-expanded="false" aria-controls="menu-management">
-          <span>Management</span>
-        </button>
-      </li>
-      <li>
-        <button class="nav__link" data-menu="booking" aria-expanded="false" aria-controls="menu-booking">
-          <span>Booking y Ticketing</span>
-        </button>
-      </li>
-    </ul>
-
-    <div class="nav__contact">
-      <a href="https://entradas.festivalultreia.com/" class="nav__link" target="_blank" rel="noopener"><span>Agenda</span></a>
-      <a href="pages/contacto.html" class="nav__link"><span>Contacto</span></a>
-    </div>
-
-    <!-- Hamburger (mobile only) -->
-    <button class="nav__burger" id="nav-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
-      <span></span>
-      <span></span>
-    </button>
-  </nav>
-
-  <!-- ── Mobile menu ──────────────────────────────────────── -->
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-
-    <!-- Level 1: section list -->
-    <div class="mobile-level" id="mobile-level-1" data-level="1">
-      <ul class="mobile-nav-list">
-        <li class="mobile-nav-item" data-target="mobile-eventos">Eventos</li>
-        <li class="mobile-nav-item" data-target="mobile-conciertos">Conciertos</li>
-        <li class="mobile-nav-item" data-target="mobile-festival">Festival</li>
-        <li class="mobile-nav-item" data-target="mobile-management">Management</li>
-        <li class="mobile-nav-item" data-target="mobile-booking">Booking y Ticketing</li>
-        <li class="mobile-nav-item"><a href="https://entradas.festivalultreia.com/" target="_blank" rel="noopener">Agenda</a></li>
-        <li class="mobile-nav-item"><a href="pages/contacto.html">Contacto</a></li>
-      </ul>
-    </div>
-
-    <!-- Level 2: Eventos -->
-    <div class="mobile-level mobile-level--sub" id="mobile-eventos" data-level="2" hidden>
-      <button class="mobile-back">← Eventos</button>
-      <div class="mobile-sub-content">
-        <div class="mobile-sub-lists">
-          <div class="mobile-sub-group">
-            <p class="mobile-sub-label">Eventos Privados</p>
-            <ul class="mobile-item-list" data-image="mobile-img-eventos">
-              <li class="mobile-item" data-img="images/eventos/privado-01.jpg">Feria del vino</li>
-              <li class="mobile-item" data-img="images/eventos/privado-02.jpg">Tardeo Somontes</li>
-              <li class="mobile-item" data-img="images/eventos/privado-03.jpg">Vive Primavera</li>
-            </ul>
-          </div>
-          <div class="mobile-sub-group">
-            <p class="mobile-sub-label">Eventos Públicos</p>
-            <ul class="mobile-item-list" data-image="mobile-img-eventos">
-              <li class="mobile-item" data-img="images/eventos/publico-01.jpg">Alcobendas San Isidro <span class="menu-list__meta">2025</span></li>
-              <li class="mobile-item" data-img="images/eventos/publico-02.jpg">Alcobendas San Isidro <span class="menu-list__meta">2026</span></li>
-              <li class="mobile-item" data-img="images/eventos/publico-03.jpg">Imagina Sound Fest <span class="menu-list__meta">2025</span></li>
-              <li class="mobile-item" data-img="images/eventos/publico-04.jpg">Imagina Sound Halloween Fest <span class="menu-list__meta">2025</span></li>
-              <li class="mobile-item" data-img="images/eventos/publico-05.jpg">Imagina Sound Black Friday <span class="menu-list__meta">2026</span></li>
-            </ul>
-          </div>
-        </div>
-        <div class="mobile-sub-image" id="mobile-img-eventos">
-          <img src="" alt="" aria-hidden="true">
-        </div>
-      </div>
-    </div>
-
-    <!-- Level 2: Conciertos -->
-    <div class="mobile-level mobile-level--sub" id="mobile-conciertos" data-level="2" hidden>
-      <button class="mobile-back">← Conciertos</button>
-      <div class="mobile-sub-content">
-        <div class="mobile-sub-lists">
-          <div class="mobile-sub-group">
-            <p class="mobile-sub-desc">Desarrollamos conciertos con una mirada curatorial y ejecutiva, acompañando la producción, la identidad y la experiencia del directo.</p>
-            <ul class="mobile-item-list" data-image="mobile-img-conciertos">
-              <li class="mobile-item" data-img="images/guillan-sala-siroco.jpeg">Guillan - Sala Siroco</li>
-              <li class="mobile-item" data-img="images/sobrezero-sala-siroco.jpeg">Sobrezero - Sala Siroco</li>
-              <li class="mobile-item" data-img="images/management/audiovisual.jpg">Linea 4 - Sala Siroco</li>
-              <li class="mobile-item" data-img="images/manussian-sala-moby-dick.jpeg">Manussian - Sala Moby Dick</li>
-            </ul>
-          </div>
-        </div>
-        <div class="mobile-sub-image" id="mobile-img-conciertos">
-          <img src="" alt="" aria-hidden="true">
-        </div>
-      </div>
-    </div>
-
-    <!-- Level 2: Management -->
-    <div class="mobile-level mobile-level--sub" id="mobile-management" data-level="2" hidden>
-      <button class="mobile-back">← Management</button>
-      <div class="mobile-sub-content">
-        <div class="mobile-sub-lists">
-          <div class="mobile-sub-group">
-            <p class="mobile-sub-desc">Acompañamos a artistas en el desarrollo integral de su proyecto, conectándolos con los profesionales adecuados en cada fase.</p>
-            <p class="mobile-sub-label">Nuestros artistas</p>
-            <ul class="mobile-item-list" data-image="mobile-img-management">
-              <li class="mobile-item" data-img="images/management/produccion.jpg">Guilan</li>
-              <li class="mobile-item" data-img="images/management/identidad.jpg">Sobrezero</li>
-              <li class="mobile-item" data-img="images/management/audiovisual.jpg">Wistimber</li>
-            </ul>
-          </div>
-          <div class="mobile-sub-group">
-            <p class="mobile-sub-label">Servicios</p>
-            <ul class="mobile-item-list">
-              <li class="mobile-item">Producción musical</li>
-              <li class="mobile-item">Desarrollo creativo / identidad visual</li>
-              <li class="mobile-item">Proyectos audiovisuales</li>
-              <li class="mobile-item">Booking y Ticketing</li>
-            </ul>
-          </div>
-        </div>
-        <div class="mobile-sub-image" id="mobile-img-management">
-          <img src="" alt="" aria-hidden="true">
-        </div>
-      </div>
-    </div>
-
-    <!-- Level 2: Booking -->
-    <div class="mobile-level mobile-level--sub" id="mobile-booking" data-level="2" hidden>
-      <button class="mobile-back">← Booking y Ticketing</button>
-      <div class="mobile-sub-content">
-        <div class="mobile-sub-lists">
-          <div class="mobile-sub-group">
-            <p class="mobile-sub-desc">Nos encargamos de la gestión integral, definiendo la estrategia de venta de entradas y coordinando la contratación de artistas.</p>
-            <ul class="mobile-item-list" data-image="mobile-img-booking">
-              <li class="mobile-item" data-img="images/booking/artistas.jpg">Búsqueda y selección de artistas</li>
-              <li class="mobile-item" data-img="images/booking/caches.jpg">Cachés</li>
-              <li class="mobile-item" data-img="images/booking/riders.jpg">Condiciones técnicas y Riders</li>
-              <li class="mobile-item" data-img="images/booking/coordinacion.jpg">Coordinación de fechas, horarios y logística</li>
-              <li class="mobile-item" data-img="images/booking/plataforma.jpg">Selección de plataforma de venta</li>
-              <li class="mobile-item" data-img="images/booking/config.jpg">Configuración del evento</li>
-              <li class="mobile-item" data-img="images/booking/aforo.jpg">Control de aforo</li>
-              <li class="mobile-item" data-img="images/booking/fases.jpg">Definir fases de lanzamiento</li>
-              <li class="mobile-item" data-img="images/booking/precios.jpg">Optimizar precios</li>
-              <li class="mobile-item" data-img="images/booking/campanas.jpg">Coordinar campañas con marketing</li>
-              <li class="mobile-item" data-img="images/booking/ventas.jpg">Análisis de ventas</li>
-              <li class="mobile-item" data-img="images/booking/ajustes.jpg">Ajustes en tiempo real y Reportes</li>
-            </ul>
-            <span class="mobile-list-link">Acceso a la ticketera →</span>
-          </div>
-        </div>
-        <div class="mobile-sub-image" id="mobile-img-booking">
-          <img src="" alt="" aria-hidden="true">
-        </div>
-      </div>
-    </div>
-
-    <!-- Level 2: Festival -->
-    <div class="mobile-level mobile-level--sub" id="mobile-festival" data-level="2" hidden>
-      <button class="mobile-back">← Festival</button>
-      <div class="mobile-sub-content">
-        <div class="mobile-sub-lists">
-          <div class="mobile-sub-group">
-            <p class="mobile-sub-desc">De forma anual celebramos un evento que reúne a artistas, profesionales y agentes del panorama musical.</p>
-            <ul class="mobile-item-list" data-image="mobile-img-festival">
-              <li class="mobile-item" data-img="images/festival/2023.jpg">Ultreia 2023</li>
-              <li class="mobile-item" data-img="images/festival/2025.jpg">Ultreia 2025</li>
-              <li class="mobile-item" data-img="images/festival/2026.jpg">Ultreia 2026</li>
-            </ul>
-          </div>
-        </div>
-        <div class="mobile-sub-image" id="mobile-img-festival">
-          <img src="" alt="" aria-hidden="true">
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /mobile-menu -->
-
-  <!-- ── Menu overlay ────────────────────────────────────── -->
-  <div class="menu-overlay" id="menu-overlay" aria-hidden="true">
-
-    <!-- Eventos -->
-    <div class="menu-panel" id="menu-eventos" role="region" aria-label="Eventos">
-      <!-- Col 1: Eventos Privados -->
-      <div class="menu-col">
-        <p class="menu-col__label">Eventos Privados</p>
-        <p class="menu-col__desc">
-          Nos encargamos de la gestión integral, definiendo la estrategia de venta de entradas
-          y coordinando la contratación de artistas. Desde la configuración de plataformas
-          hasta la negociación y el cierre de line-ups, trabajamos para que cada evento
-          funcione tanto a nivel creativo como comercial.
-        </p>
-        <ul class="menu-list" data-image-target="img-eventos">
-          <li class="menu-list__item" data-img="images/eventos/privado-01.jpg">Feria del vino</li>
-          <li class="menu-list__item" data-img="images/eventos/privado-02.jpg">Tardeo Somontes</li>
-          <li class="menu-list__item" data-img="images/eventos/privado-03.jpg">Vive Primavera</li>
-        </ul>
-      </div>
-
-      <!-- Col 2: Eventos Públicos -->
-      <div class="menu-col">
-        <p class="menu-col__label">Eventos Públicos</p>
-        <p class="menu-col__desc">
-          Nos encargamos de la gestión integral, definiendo la estrategia de venta de entradas
-          y coordinando la contratación de artistas. Desde la configuración de plataformas
-          hasta la negociación y el cierre de line-ups, trabajamos para que cada evento
-          funcione tanto a nivel creativo como comercial.
-        </p>
-        <ul class="menu-list" data-image-target="img-eventos">
-          <li class="menu-list__item" data-img="images/eventos/publico-01.jpg">Alcobendas San Isidro <span class="menu-list__meta">2025</span></li>
-          <li class="menu-list__item" data-img="images/eventos/publico-02.jpg">Alcobendas San Isidro <span class="menu-list__meta">2026</span></li>
-          <li class="menu-list__item" data-img="images/eventos/publico-03.jpg">Imagina Sound Fest <span class="menu-list__meta">2025</span></li>
-          <li class="menu-list__item" data-img="images/eventos/publico-04.jpg">Imagina Sound Halloween Fest <span class="menu-list__meta">2025</span></li>
-          <li class="menu-list__item" data-img="images/eventos/publico-05.jpg">Imagina Sound Black Friday <span class="menu-list__meta">2026</span></li>
-        </ul>
-      </div>
-
-      <!-- Col 3: Image -->
-      <div class="menu-col menu-col--image">
-        <div class="menu-image" id="img-eventos">
-          <img src="" alt="" aria-hidden="true">
-        </div>
-      </div>
-    </div>
-
-    <!-- Conciertos -->
-    <div class="menu-panel" id="menu-conciertos" role="region" aria-label="Conciertos">
-      <div class="menu-col">
-        <p class="menu-col__desc">
-          Diseñamos conciertos desde una mirada integral, uniendo programación, producción y
-          experiencia para construir directos con identidad propia y recorrido real.
-        </p>
-        <ul class="menu-list" data-image-target="img-conciertos">
-          <li class="menu-list__item" data-img="images/guillan-sala-siroco.jpeg">Guillan - Sala Siroco</li>
-          <li class="menu-list__item" data-img="images/sobrezero-sala-siroco.jpeg">Sobrezero - Sala Siroco</li>
-          <li class="menu-list__item" data-img="images/management/audiovisual.jpg">Linea 4 - Sala Siroco</li>
-          <li class="menu-list__item" data-img="images/manussian-sala-moby-dick.jpeg">Manussian - Sala Moby Dick</li>
-        </ul>
-      </div>
-      <div class="menu-col"></div>
-      <div class="menu-col menu-col--image">
-        <div class="menu-image" id="img-conciertos">
-          <img src="" alt="" aria-hidden="true">
-        </div>
-      </div>
-    </div>
-
-    <!-- Management -->
-    <div class="menu-panel" id="menu-management" role="region" aria-label="Management">
-      <!-- Col 1: Description + artists -->
-      <div class="menu-col">
-        <p class="menu-col__desc">
-          Acompañamos a artistas en el desarrollo integral de su proyecto, conectándolos con
-          los profesionales adecuados en cada fase. Nos encargamos de coordinar y dar
-          coherencia a todo el proceso creativo y técnico, facilitando el acceso a una red
-          de colaboradores, productores, técnicos, creativos, que aportan valor real al
-          proyecto.
-        </p>
-        <p class="menu-col__label">Nuestros artistas</p>
-        <ul class="menu-list" data-preview-target="preview-management" data-preview-mode="image">
-          <li class="menu-list__item" data-img="images/management/produccion.jpg">Guilan</li>
-          <li class="menu-list__item" data-img="images/management/identidad.jpg">Sobrezero</li>
-          <li class="menu-list__item" data-img="images/management/audiovisual.jpg">Wistimber</li>
-        </ul>
-      </div>
-
-      <!-- Col 2: Services -->
-      <div class="menu-col">
-        <ul class="menu-list" data-preview-target="preview-management" data-preview-mode="detail">
-          <li class="menu-list__item" data-detail-title="Producción musical" data-detail-text="Acompañamos la definición sonora del proyecto desde una mirada estratégica y creativa, coordinando productores, sesiones, repertorio y dirección artística para que cada lanzamiento tenga coherencia, identidad y una lectura clara dentro del recorrido del artista.||Trabajamos cada etapa de la producción como una decisión de posicionamiento, cuidando tanto el detalle técnico como la intención emocional y el encaje con la visión global del proyecto.||Nuestro objetivo es que la música no solo funcione como una suma de canciones, sino como una propuesta sólida, reconocible y preparada para crecer con consistencia en el tiempo.">Producción musical</li>
-          <li class="menu-list__item" data-detail-title="Desarrollo creativo / identidad visual" data-detail-text="Construimos un universo visual sólido alrededor del proyecto, trabajando concepto, narrativa, piezas gráficas, contenido digital, dirección de arte y aplicaciones visuales para que la identidad del artista se perciba de forma consistente en cada punto de contacto.||No se trata solo de diseñar una estética, sino de ordenar un lenguaje visual capaz de sostener lanzamientos, campañas, directos, redes y colaboraciones sin perder carácter ni claridad.||Buscamos que cada elemento visual refuerce el relato del artista y lo haga reconocible, legible y diferencial dentro de un contexto cada vez más saturado.">Desarrollo creativo / identidad visual</li>
-          <li class="menu-list__item" data-detail-title="Proyectos audiovisuales" data-detail-text="Desarrollamos piezas audiovisuales que amplían el relato del artista y refuerzan su posicionamiento, conectando música, imagen y narrativa en formatos pensados tanto para lanzamiento como para comunicación, directo y construcción de comunidad.||Planteamos cada proyecto audiovisual como una extensión natural de la propuesta artística, definiendo tono, ritmo, lenguaje visual y objetivos concretos según el momento en el que se encuentre el proyecto.||Desde videoclips hasta piezas de contenido o formatos escénicos, buscamos construir materiales que sumen valor real y mantengan una línea estética coherente en el tiempo.">Proyectos audiovisuales</li>
-          <li class="menu-list__item" data-detail-title="Booking y Ticketing" data-detail-text="Coordinamos contratación, estrategia de venta y operativa de entradas para que cada fecha funcione con solidez comercial y una ejecución ordenada, alineando propuesta artística, calendario, negociación, ticketing y comunicación con una visión conjunta.||Nos implicamos en la planificación de cada concierto o ciclo atendiendo tanto a la viabilidad económica como a la experiencia de público, buscando que cada movimiento tenga sentido dentro de la evolución del proyecto.||La idea es convertir la operativa en una herramienta de crecimiento, profesionalizando procesos y ayudando a que cada oportunidad en directo se construya con criterio, método y continuidad.">Booking y Ticketing</li>
-        </ul>
-      </div>
-
-      <!-- Col 3: Dynamic preview -->
-      <div class="menu-col menu-col--image">
-        <div class="menu-preview" id="preview-management">
-          <div class="menu-detail" aria-live="polite">
-            <div class="menu-detail__text"></div>
-          </div>
-          <div class="menu-image">
-            <img src="" alt="" aria-hidden="true">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Booking y Ticketing -->
-    <div class="menu-panel" id="menu-booking" role="region" aria-label="Booking y Ticketing">
-      <!-- Col 1: Fixed text + link -->
-      <div class="menu-col">
-        <p class="menu-col__desc">
-          Nos encargamos de la gestión integral, definiendo la estrategia de venta de entradas
-          y coordinando la contratación de artistas. Desde la configuración de plataformas
-          hasta la negociación y el cierre de line-ups, trabajamos para que cada evento
-          funcione tanto a nivel creativo como comercial.
-        </p>
-        <span class="menu-list__link">Acceso a la ticketera</span>
-      </div>
-
-      <!-- Col 2: List -->
-      <div class="menu-col">
-        <ul class="menu-list" data-image-target="img-booking">
-          <li class="menu-list__item" data-img="images/booking/artistas.jpg">Búsqueda y selección de artistas</li>
-          <li class="menu-list__item" data-img="images/booking/caches.jpg">Cachés</li>
-          <li class="menu-list__item" data-img="images/booking/riders.jpg">Condiciones técnicas y Riders</li>
-          <li class="menu-list__item" data-img="images/booking/coordinacion.jpg">Coordinación de fechas, horarios y logística</li>
-          <li class="menu-list__item" data-img="images/booking/plataforma.jpg">Selección de plataforma de venta</li>
-          <li class="menu-list__item" data-img="images/booking/config.jpg">Configuración del evento</li>
-          <li class="menu-list__item" data-img="images/booking/aforo.jpg">Control de aforo</li>
-          <li class="menu-list__item" data-img="images/booking/fases.jpg">Definir fases de lanzamiento</li>
-          <li class="menu-list__item" data-img="images/booking/precios.jpg">Optimizar precios</li>
-          <li class="menu-list__item" data-img="images/booking/campanas.jpg">Coordinar campañas con marketing</li>
-          <li class="menu-list__item" data-img="images/booking/ventas.jpg">Análisis de ventas</li>
-          <li class="menu-list__item" data-img="images/booking/ajustes.jpg">Ajustes en tiempo real y Reportes</li>
-        </ul>
-      </div>
-
-      <!-- Col 3: Image -->
-      <div class="menu-col menu-col--image">
-        <div class="menu-image" id="img-booking">
-          <img src="" alt="" aria-hidden="true">
-        </div>
-      </div>
-    </div>
-
-    <!-- Festival -->
-    <div class="menu-panel" id="menu-festival" role="region" aria-label="Festival">
-      <!-- Col 1: Description + list -->
-      <div class="menu-col">
-        <p class="menu-col__desc">
-          De forma anual celebramos un evento que reúne a artistas, profesionales y agentes
-          del panorama musical con el objetivo de generar conexiones reales y dar forma a un
-          ecosistema creativo vivo.
-        </p>
-        <ul class="menu-list" data-image-target="img-festival">
-          <li class="menu-list__item" data-img="images/festival/2023.jpg">Ultreia 2023</li>
-          <li class="menu-list__item" data-img="images/festival/2025.jpg">Ultreia 2025</li>
-          <li class="menu-list__item" data-img="images/festival/2026.jpg">Ultreia 2026</li>
-        </ul>
-      </div>
-
-      <!-- Col 2+3: Wide image -->
-      <div class="menu-col--image-wide">
-        <div class="menu-image" id="img-festival">
-          <img src="" alt="" aria-hidden="true">
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /menu-overlay -->
-
-  <!-- ── Hero content ─────────────────────────────────────── -->
   <main class="hero" id="main-content">
     <p class="hero__text">
       Productora musical y creativa enfocada en el desarrollo de proyectos con identidad
@@ -400,7 +29,6 @@
     </p>
   </main>
 
-  <!-- ── Footer bar ───────────────────────────────────────── -->
   <footer class="footer-bar" role="contentinfo">
     <div class="footer-bar__left"></div>
     <div class="footer-bar__center">
@@ -414,7 +42,6 @@
     </div>
   </footer>
 
-  <!-- ── Cookie Banner ────────────────────────────────────── -->
   <div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
     <p class="cookie-banner__text">
       Usamos cookies para<br>mejorar tu experiencia.
@@ -422,6 +49,7 @@
     </p>
   </div>
 
+  <script src="js/layout.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

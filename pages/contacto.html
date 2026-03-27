@@ -3,27 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contacto — Ultreia</title>
+  <title>Contacto - Ultreia</title>
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/variables.css">
   <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/mobile.css">
   <link rel="stylesheet" href="../css/pages.css">
 </head>
 <body class="page-contact">
 
-  <!-- Background -->
   <div class="site-bg" aria-hidden="true">
     <video autoplay muted loop playsinline>
       <source src="../images/Video_de_fondo.mp4" type="video/mp4">
     </video>
   </div>
 
-  <nav class="nav nav--page" aria-label="Navegación principal">
-    <a href="../index.html" class="nav__logo" aria-label="Ultreia — inicio">
-      <img src="../images/Ultreia_Festival2025_LOGO_BLANCO.svg" alt="Ultreia">
-    </a>
-    <a href="../index.html" class="nav__link nav__link--back">← Volver</a>
-  </nav>
+  <div data-include="/partials/header.html"></div>
 
   <main class="contact-content">
     <div class="contact-grid">
@@ -75,5 +70,8 @@
       <span class="footer-bar__copy">©Ultreia[2026] [Design/Code]</span>
     </div>
   </footer>
+
+  <script src="../js/layout.js"></script>
+  <script src="../js/main.js"></script>
 </body>
 </html>

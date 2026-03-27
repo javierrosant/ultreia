@@ -64,8 +64,15 @@
   padding: 32px 24px calc(var(--footer-height) + 24px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  opacity: 1;
   transform: translateX(0);
-  transition: transform var(--duration-med) var(--ease-out);
+  transition:
+    transform 280ms var(--ease-out),
+    opacity 220ms ease;
+}
+
+.mobile-level--sub {
+  padding-top: calc(var(--nav-height) + 24px);
 }
 
 .mobile-level[hidden] {
@@ -74,15 +81,21 @@
 
 .mobile-level.is-entering {
   display: flex;
-  transform: translateX(100%);
+  opacity: 0;
+  transform: translateX(18%);
+  pointer-events: none;
 }
 
 .mobile-level.is-active {
+  opacity: 1;
   transform: translateX(0);
+  pointer-events: auto;
 }
 
 .mobile-level.is-exiting {
-  transform: translateX(-30%);
+  opacity: 0;
+  transform: translateX(-18%);
+  pointer-events: none;
 }
 
 /* ── Level 1: section list ───────────────────────────────── */
@@ -91,7 +104,7 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  margin-top: 16px;
+  margin-top: 24px;
 }
 
 .mobile-nav-item {
@@ -266,8 +279,21 @@
 /* ── Responsive breakpoint ───────────────────────────────── */
 
 @media (max-width: 768px) {
+  .nav {
+    padding: 0 var(--page-gutter-sm);
+  }
+
+  .nav__logo {
+    margin-left: -2px;
+  }
+
+  html,
   body {
-    overflow: hidden;
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-y: auto;
   }
 
   /* Hide desktop nav links */
@@ -281,9 +307,17 @@
     display: flex;
   }
 
+  .nav.is-menu-open {
+    background: var(--color-overlay);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+
   /* Show mobile menu */
   .mobile-menu {
     display: block;
+    top: 0;
+    padding-top: var(--nav-height);
   }
 
   /* Hide desktop menu overlay */
@@ -293,20 +327,20 @@
 
   /* Hero text repositioned for mobile */
   .hero {
-    left: auto;
+    left: var(--page-gutter-sm);
     right: var(--page-gutter-sm);
     bottom: calc(var(--footer-height) + var(--hero-mobile-bottom-offset));
-    width: min(calc(100vw - (var(--page-gutter-sm) * 2)), var(--hero-max-width-mobile));
-    max-width: var(--hero-max-width-mobile);
+    width: auto;
+    max-width: none;
   }
 
   .hero__text {
     font-size: 0.75rem;
   }
 
-  /* Footer bar simplified on mobile */
+  /* Footer bar hidden on mobile */
   .footer-bar {
-    padding: 0 var(--footer-gutter-sm);
+    display: none;
   }
 
   .footer-bar__center {
@@ -322,8 +356,13 @@
     bottom: var(--cookie-offset);
     left: var(--cookie-offset-mobile);
     right: var(--cookie-offset-mobile);
+    width: auto;
     max-width: none;
     font-size: 0.6875rem;
+  }
+
+  .cookie-banner__text {
+    padding-right: 52px;
   }
 }
 

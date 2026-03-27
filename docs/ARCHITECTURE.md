@@ -1,125 +1,105 @@
-# Ultreia Web - Arquitectura y notas de mantenimiento
+# Ultreia Web - Arquitectura
 
 ## Resumen
 
-Este proyecto es una web estática compuesta por HTML, CSS y JavaScript vanilla.
-No hay build step, bundler ni framework.
+La web es estatica: HTML, CSS y JavaScript vanilla, sin bundler ni framework.
 
-La home usa:
-- `index.html` como documento principal.
-- `css/variables.css` para tokens globales.
-- `css/main.css` para layout y componentes compartidos.
-- `css/mobile.css` para el comportamiento responsive y el menú móvil.
-- `js/main.js` para navegación desktop, previews de imágenes, banner de cookies y menú móvil.
-
-Las páginas internas usan:
+Piezas principales:
+- `index.html`
 - `pages/contacto.html`
 - `pages/privacidad.html`
 - `pages/terminos.html`
-- `css/pages.css` para diferencias de contenido respecto a la home.
+- `partials/header.html`
+- `css/variables.css`
+- `css/main.css`
+- `css/mobile.css`
+- `css/pages.css`
+- `js/layout.js`
+- `js/main.js`
 
-## Decisiones de estructura
+## Header reutilizable
 
-### 1. Tokens primero
+El header ya no se mantiene duplicado en cada pagina.
 
-Los offsets y medidas clave viven en `css/variables.css`.
-Esto incluye gutters, alturas de navegación, offsets del hero, límites del menú y medidas del banner de cookies.
+La fuente unica de verdad vive en:
+- `partials/header.html`
 
-Si hay que recolocar elementos globales, tocar primero:
-- `--page-gutter`
-- `--footer-gutter`
-- `--nav-height`
-- `--footer-height`
-- `--menu-panel-padding-top`
-- `--menu-col-gap`
-- `--hero-bottom-offset`
+Ese parcial incluye:
+- header desktop
+- dropdown desktop
+- menu movil
 
-### 2. Header y menú como un solo bloque visual
+Se inyecta en cada pagina mediante:
+- `js/layout.js`
 
-El dropdown desktop parte desde `top: 0` en `menu-overlay`.
-El contenido interno del panel compensa con `padding-top` para no quedar tapado por la navegación.
+Cada HTML usa:
+- `<div data-include="/partials/header.html"></div>`
 
-Importante:
-- El `nav` queda transparente cuando el menú está abierto.
-- El fondo visual real lo pinta `menu-overlay`.
-- Si se vuelve a poner fondo al `nav`, reaparece el efecto de "doble capa".
-- `Agenda` ya no forma parte del dropdown: es un enlace externo en el bloque derecho del header y abre en pestaña nueva.
-- El orden actual del menú principal es:
-  - Eventos
-  - Conciertos
-  - Festival
-  - Management
-  - Booking y Ticketing
+Cuando `js/layout.js` termina de inyectar el parcial, emite:
+- `ultreia:layoutready`
 
-### 3. Alineación del hero
+`js/main.js` espera ese evento para inicializar el menu cuando el header viene cargado por include.
 
-El texto de la home está alineado con el tercer tercio del layout, igual que la columna de imágenes del menú.
-No está posicionado "a ojo" con `right`.
+## CSS
 
-Variables implicadas:
-- `--layout-width`
-- `--layout-third`
-- `--layout-third-start`
-- `--hero-width`
+Responsabilidades:
+- `css/variables.css`: tokens globales, offsets, alturas, gutters y medidas repetidas
+- `css/main.css`: layout compartido, hero, footer, menu desktop, cookies
+- `css/mobile.css`: menu movil y ajustes responsive generales
+- `css/pages.css`: maquetacion especifica de contacto y legales
 
-### 4. Banner de cookies
-
-Ahora mismo el banner está forzado a mostrarse siempre para maquetación.
-El botón `Aceptar` no persiste estado a propósito.
-
-Si se quiere reactivar comportamiento real:
-- guardar aceptación en `localStorage`,
-- arrancar el banner oculto en HTML,
-- mostrarlo solo si no existe consentimiento.
+Regla de mantenimiento:
+- si el cambio afecta al header o a los menus, editar primero `partials/header.html`
+- si el cambio afecta a layout compartido, editar primero `css/main.css` o `css/mobile.css`
+- usar `css/pages.css` solo para diferencias reales de contenido interno
 
 ## JavaScript
 
-`js/main.js` está dividido en cuatro bloques funcionales:
+### `js/layout.js`
 
-1. Menú desktop
-- gestiona `activeMenuId`,
-- mide la altura real del panel abierto,
-- abre/cierra overlay,
-- sincroniza `aria-expanded`.
+Hace una sola cosa:
+- busca nodos con `data-include`
+- carga el HTML compartido
+- lo inserta en la pagina
+- dispara `ultreia:layoutready`
 
-2. Previews de imagen
-- una función genérica (`bindPreviewList`) conecta listas con contenedores de imagen,
-- la misma lógica se reutiliza en desktop y móvil.
-- en `Management`, esa misma capa se amplía con dos modos de preview:
-  - `image` para artistas,
-  - `detail` para textos de servicio.
-- `Conciertos` usa el mismo patrón de preview por imagen que `Eventos`.
+### `js/main.js`
 
-3. Banner de cookies
-- inicialización mínima,
-- modo visible permanente mientras se maqueta.
+Se encarga de:
+- menu desktop
+- previews de imagen y texto
+- banner de cookies
+- menu movil
 
-4. Menú móvil
-- apertura/cierre del panel,
-- navegación entre nivel 1 y subniveles,
-- bloqueo de scroll del `body`.
+Bloques funcionales:
+1. Menu desktop
+2. Previews desktop y mobile
+3. Cookies
+4. Menu movil
 
-## Convenciones para seguir trabajando
+## Menu actual
 
-- Reutilizar variables de `variables.css` antes de introducir nuevos píxeles hardcodeados.
-- Si un ajuste afecta a home y páginas internas, intentar resolverlo en `main.css` y no duplicarlo en `pages.css`.
-- Mantener `js/main.js` agrupado por responsabilidad; evitar volver a mezclar lógica de desktop, móvil y cookies.
-- Si se añade un nuevo panel de menú desktop, usar el patrón existente:
-  - botón `.nav__link[data-menu="..."]`
-  - panel `#menu-...`
-  - listas con `data-image-target`
-- Si una lista necesita texto dinámico en vez de imagen, usar:
-  - `data-preview-target`
-  - `data-preview-mode="detail"`
-  - `data-detail-text` con bloques separados por `||`
-- Si se añade un nuevo subnivel móvil, usar:
-  - item `.mobile-nav-item[data-target="..."]`
-  - panel con `id` equivalente
-  - listas con `data-image`
+Orden principal:
+- Eventos
+- Conciertos
+- Festival
+- Management
+- Booking y Ticketing
 
-## Pendientes razonables
+Enlaces fijos a la derecha:
+- Agenda
+- Contacto
 
-- Corregir la codificación de caracteres en varios HTML y comentarios CSS/JS.
-- Decidir si el banner de cookies debe volver a comportamiento real.
-- Extraer contenido repetido del menú a una fuente de datos si la web crece.
-- Añadir una guía corta de contenido/edición para no tocar HTML a mano sin criterio de estructura.
+`Agenda` abre una web externa en nueva pestaña.
+
+## Convenciones
+
+- Reutilizar variables antes de meter nuevos pixeles hardcodeados
+- Mantener el header solo en `partials/header.html`
+- Si una lista necesita preview de imagen, usar `data-image-target` o `data-image`
+- Si una lista necesita preview de texto, usar `data-preview-target`, `data-preview-mode="detail"` y `data-detail-text`
+
+## Riesgos conocidos
+
+- Siguen existiendo restos de codificacion antigua en algunos archivos y assets heredados
+- No hay tests automaticos ni pipeline de validacion
