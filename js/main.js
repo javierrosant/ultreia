@@ -18,6 +18,7 @@
   /* ── Elements ───────────────────────────────────────────── */
 
   const overlay    = document.getElementById('menu-overlay');
+  const nav        = document.querySelector('.nav');
   const navLinks   = document.querySelectorAll('.nav__link[data-menu]');
   const panels     = document.querySelectorAll('.menu-panel');
   const cookieBanner = document.getElementById('cookie-banner');
@@ -46,6 +47,7 @@
     overlay.style.height = panelHeight + 'px';
     overlay.classList.add('is-open');
     overlay.removeAttribute('aria-hidden');
+    nav.classList.add('is-menu-open');
 
     // Show panel (small delay lets height transition start first)
     requestAnimationFrame(() => {
@@ -66,6 +68,7 @@
 
     overlay.style.height = '0';
     overlay.setAttribute('aria-hidden', 'true');
+    nav.classList.remove('is-menu-open');
     activeMenu = null;
   }
 

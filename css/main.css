@@ -32,6 +32,12 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 48px;
+  background: transparent;
+  transition: background var(--duration-med) var(--ease-out);
+}
+
+.nav.is-menu-open {
+  background: var(--color-overlay);
 }
 
 .nav__logo {
@@ -225,7 +231,6 @@
   overflow: hidden;
   height: 0;
   transition: height var(--duration-slow) var(--ease-out);
-  border-bottom: 1px solid var(--color-border);
 }
 
 .menu-overlay.is-open {
