@@ -4,7 +4,7 @@
   --color-text: #ffffff;
   --color-text-dim: rgba(255, 255, 255, 0.55);
   --color-text-hover: #ffffff;
-  --color-overlay: rgba(10, 10, 10, 0.92);
+  --color-overlay: rgba(10, 10, 10, 0.82);
   --color-border: rgba(255, 255, 255, 0.12);
   --color-accent: #ffffff;
 
@@ -19,11 +19,29 @@
   --letter-spacing-nav: 0.08em;
 
   /* Layout */
+  --page-gutter: 48px;
+  --page-gutter-sm: 24px;
+  --footer-gutter: 24px;
+  --footer-gutter-sm: 16px;
   --nav-height: 60px;
   --footer-height: 44px;
-  --menu-height: 70vh;
+  --menu-max-height-vh: 78;
+  --menu-panel-padding-top: 52px;
+  --menu-panel-padding-bottom: 48px;
+  --menu-col-gap: 48px;
+  --hero-bottom-offset: 52px;
+  --hero-max-width: 420px;
+  --hero-max-width-mobile: 280px;
+  --hero-mobile-bottom-offset: 32px;
+  --cookie-offset: 14px;
+  --cookie-offset-mobile: 12px;
+  --cookie-max-width: 220px;
   --max-width: 1440px;
   --col: calc(100% / 3);
+  --layout-width: calc(100vw - (var(--page-gutter) * 2));
+  --layout-third: calc(var(--layout-width) / 3);
+  --layout-third-start: calc(var(--page-gutter) + (var(--layout-third) * 2));
+  --hero-width: calc(var(--layout-third) - var(--menu-col-gap));
 
   /* Timing */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);

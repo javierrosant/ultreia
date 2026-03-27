@@ -31,13 +31,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 48px;
+  padding: 0 var(--page-gutter);
   background: transparent;
   transition: background var(--duration-med) var(--ease-out);
 }
 
 .nav.is-menu-open {
-  background: var(--color-overlay);
+  background: transparent;
 }
 
 .nav__logo {
@@ -54,7 +54,7 @@
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 48px;
+  gap: var(--menu-col-gap);
 }
 
 .nav__link {
@@ -97,10 +97,11 @@
 
 .hero {
   position: fixed;
-  bottom: calc(var(--footer-height) + 52px);
-  right: 80px;
+  bottom: calc(var(--footer-height) + var(--hero-bottom-offset));
+  left: var(--layout-third-start);
   z-index: 10;
-  max-width: 420px;
+  width: var(--hero-width);
+  max-width: var(--hero-max-width);
   pointer-events: none;
 }
 
@@ -121,7 +122,7 @@
   z-index: 90;
   display: flex;
   align-items: center;
-  padding: 0 24px;
+  padding: 0 var(--footer-gutter);
   gap: 0;
 }
 
@@ -135,7 +136,7 @@
   font-size: var(--font-size-label);
   color: var(--color-text-dim);
   letter-spacing: 0.04em;
-  padding: 0 24px;
+  padding: 0 var(--footer-gutter);
 }
 
 .footer-bar__center a {
@@ -162,35 +163,18 @@
   white-space: nowrap;
 }
 
-.footer-bar__cta {
-  font-size: var(--font-size-label);
-  letter-spacing: var(--letter-spacing-nav);
-  text-transform: uppercase;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid var(--color-border);
-  padding: 4px 16px;
-  border-radius: 2px;
-  transition: background var(--duration-fast) ease, border-color var(--duration-fast) ease;
-  white-space: nowrap;
-}
-
-.footer-bar__cta:hover {
-  background: rgba(255,255,255,0.18);
-  border-color: rgba(255,255,255,0.3);
-}
-
 /* ── Cookie Banner ──────────────────────────────────────── */
 
 .cookie-banner {
   position: fixed;
-  bottom: calc(var(--footer-height) + 12px);
+  bottom: var(--cookie-offset);
   left: 16px;
   z-index: 200;
   background: rgba(20, 20, 20, 0.95);
   border: 1px solid var(--color-border);
   border-radius: 4px;
   padding: 12px 16px;
-  max-width: 220px;
+  max-width: var(--cookie-max-width);
   font-size: var(--font-size-sm);
   line-height: 1.5;
   color: var(--color-text-dim);
@@ -205,15 +189,25 @@
   pointer-events: none;
 }
 
-.cookie-banner a,
-.cookie-banner button {
+.cookie-banner__text {
+  margin: 0;
+}
+
+.cookie-banner__button {
   color: var(--color-text);
   text-decoration: underline;
   text-underline-offset: 2px;
   cursor: pointer;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin-left: 4px;
+  font: inherit;
+  line-height: inherit;
+  transition: opacity var(--duration-fast) ease;
 }
 
-.cookie-banner button:hover {
+.cookie-banner__button:hover {
   opacity: 0.7;
 }
 
@@ -221,7 +215,7 @@
 
 .menu-overlay {
   position: fixed;
-  top: var(--nav-height);
+  top: 0;
   left: 0;
   right: 0;
   z-index: 50;
@@ -250,7 +244,10 @@
   pointer-events: none;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  padding: 52px 48px 48px;
+  padding:
+    calc(var(--nav-height) + var(--menu-panel-padding-top))
+    var(--page-gutter)
+    var(--menu-panel-padding-bottom);
   gap: 0;
   min-height: 400px;
 }
@@ -264,7 +261,7 @@
 /* ── Menu columns ───────────────────────────────────────── */
 
 .menu-col {
-  padding-right: 48px;
+  padding-right: var(--menu-col-gap);
 }
 
 .menu-col--image {

@@ -293,9 +293,11 @@
 
   /* Hero text repositioned for mobile */
   .hero {
-    right: 24px;
-    bottom: calc(var(--footer-height) + 32px);
-    max-width: 280px;
+    left: auto;
+    right: var(--page-gutter-sm);
+    bottom: calc(var(--footer-height) + var(--hero-mobile-bottom-offset));
+    width: min(calc(100vw - (var(--page-gutter-sm) * 2)), var(--hero-max-width-mobile));
+    max-width: var(--hero-max-width-mobile);
   }
 
   .hero__text {
@@ -304,7 +306,7 @@
 
   /* Footer bar simplified on mobile */
   .footer-bar {
-    padding: 0 16px;
+    padding: 0 var(--footer-gutter-sm);
   }
 
   .footer-bar__center {
@@ -317,9 +319,10 @@
 
   /* Cookie banner */
   .cookie-banner {
-    bottom: calc(var(--footer-height) + 8px);
-    left: 12px;
-    max-width: 200px;
+    bottom: var(--cookie-offset);
+    left: var(--cookie-offset-mobile);
+    right: var(--cookie-offset-mobile);
+    max-width: none;
     font-size: 0.6875rem;
   }
 }
