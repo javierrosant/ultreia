@@ -43,6 +43,13 @@ Importante:
 - El `nav` queda transparente cuando el menú está abierto.
 - El fondo visual real lo pinta `menu-overlay`.
 - Si se vuelve a poner fondo al `nav`, reaparece el efecto de "doble capa".
+- `Agenda` ya no forma parte del dropdown: es un enlace externo en el bloque derecho del header y abre en pestaña nueva.
+- El orden actual del menú principal es:
+  - Eventos
+  - Conciertos
+  - Festival
+  - Management
+  - Booking y Ticketing
 
 ### 3. Alineación del hero
 
@@ -78,6 +85,10 @@ Si se quiere reactivar comportamiento real:
 2. Previews de imagen
 - una función genérica (`bindPreviewList`) conecta listas con contenedores de imagen,
 - la misma lógica se reutiliza en desktop y móvil.
+- en `Management`, esa misma capa se amplía con dos modos de preview:
+  - `image` para artistas,
+  - `detail` para textos de servicio.
+- `Conciertos` usa el mismo patrón de preview por imagen que `Eventos`.
 
 3. Banner de cookies
 - inicialización mínima,
@@ -97,6 +108,10 @@ Si se quiere reactivar comportamiento real:
   - botón `.nav__link[data-menu="..."]`
   - panel `#menu-...`
   - listas con `data-image-target`
+- Si una lista necesita texto dinámico en vez de imagen, usar:
+  - `data-preview-target`
+  - `data-preview-mode="detail"`
+  - `data-detail-text` con bloques separados por `||`
 - Si se añade un nuevo subnivel móvil, usar:
   - item `.mobile-nav-item[data-target="..."]`
   - panel con `id` equivalente

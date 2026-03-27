@@ -55,42 +55,61 @@
   display: flex;
   align-items: center;
   gap: var(--menu-col-gap);
+  height: 100%;
+}
+
+.nav__links li {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
 }
 
 .nav__link {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
   font-size: var(--font-size-nav);
   letter-spacing: var(--letter-spacing-nav);
   text-transform: uppercase;
   color: var(--color-text);
   cursor: pointer;
   position: relative;
-  transition: opacity var(--duration-fast) ease;
+  transition: color var(--duration-fast) ease, opacity var(--duration-fast) ease;
   white-space: nowrap;
   user-select: none;
 }
 
-.nav__link::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--color-text);
-  transition: width var(--duration-med) var(--ease-out);
+.nav__link > span {
+  position: relative;
+  display: inline-block;
 }
 
-.nav__link:hover::after,
-.nav__link.is-active::after {
-  width: 100%;
+.nav__link::after {
+  content: none;
 }
 
 .nav__link.is-active {
-  opacity: 1;
+  color: var(--color-text);
 }
 
 .nav__contact {
+  display: flex;
+  align-items: center;
+  gap: 24px;
   flex-shrink: 0;
+}
+
+.nav:hover .nav__link,
+.nav.is-menu-open .nav__link {
+  color: var(--color-text-dim);
+}
+
+.nav:hover .nav__link:hover,
+.nav:hover .nav__link:focus-visible,
+.nav.is-menu-open .nav__link.is-active,
+.nav.is-menu-open .nav__contact .nav__link:hover,
+.nav.is-menu-open .nav__contact .nav__link:focus-visible {
+  color: var(--color-text);
 }
 
 /* ── Hero content ───────────────────────────────────────── */
@@ -174,7 +193,8 @@
   border: 1px solid var(--color-border);
   border-radius: 4px;
   padding: 12px 16px;
-  max-width: var(--cookie-max-width);
+  width: 272px;
+  max-width: none;
   font-size: var(--font-size-sm);
   line-height: 1.5;
   color: var(--color-text-dim);
@@ -191,9 +211,15 @@
 
 .cookie-banner__text {
   margin: 0;
+  position: relative;
+  padding-right: 56px;
+  max-width: none;
 }
 
 .cookie-banner__button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
   color: var(--color-text);
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -201,7 +227,6 @@
   border: 0;
   background: transparent;
   padding: 0;
-  margin-left: 4px;
   font: inherit;
   line-height: inherit;
   transition: opacity var(--duration-fast) ease;
@@ -308,21 +333,7 @@
   cursor: pointer;
   padding: 6px 0;
   transition: color var(--duration-fast) ease;
-  position: relative;
   width: fit-content;
-}
-
-.menu-list__item::before {
-  content: '';
-  position: absolute;
-  left: -16px;
-  top: 50%;
-  transform: translateY(-50%) scaleX(0);
-  width: 8px;
-  height: 1px;
-  background: var(--color-text);
-  transform-origin: left;
-  transition: transform var(--duration-fast) var(--ease-out);
 }
 
 .menu-list__item:hover,
@@ -330,9 +341,12 @@
   color: var(--color-text);
 }
 
-.menu-list__item:hover::before,
-.menu-list__item.is-active::before {
-  transform: translateY(-50%) scaleX(1);
+.menu-list__meta {
+  display: inline-block;
+  font-size: 0.55em;
+  line-height: 1;
+  vertical-align: super;
+  margin-left: 4px;
 }
 
 .menu-list__link {
@@ -384,6 +398,79 @@
 
 .menu-image img.is-visible {
   opacity: 1;
+}
+
+.menu-preview {
+  width: 100%;
+  position: relative;
+  min-height: 320px;
+}
+
+.menu-preview .menu-image,
+.menu-preview .menu-detail {
+  transition:
+    opacity var(--duration-med) ease,
+    transform var(--duration-med) var(--ease-out);
+}
+
+.menu-preview .menu-image {
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.menu-preview .menu-detail {
+  padding: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.menu-preview.is-image-visible .menu-image {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  position: relative;
+}
+
+.menu-preview.is-image-visible .menu-detail {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+.menu-preview.is-detail-visible .menu-detail {
+  opacity: 1;
+  transform: translateY(0);
+  position: relative;
+  pointer-events: auto;
+}
+
+.menu-preview.is-detail-visible .menu-image {
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+}
+
+.menu-detail__text {
+  font-size: var(--font-size-body);
+  line-height: 1.7;
+  color: var(--color-text-dim);
+  max-width: none;
+  width: 100%;
+  margin: 0;
+}
+
+.menu-detail__text p {
+  margin: 0 0 14px;
+}
+
+.menu-detail__text p:last-child {
+  margin-bottom: 0;
 }
 
 /* ── Utilities ──────────────────────────────────────────── */

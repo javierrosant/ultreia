@@ -48,6 +48,22 @@
     panels.forEach(panel => panel.classList.remove('is-visible'));
   }
 
+  function resetPanelState(panel) {
+    if (!panel) return;
+
+    panel.querySelectorAll('.menu-list__item.is-active').forEach(item => {
+      item.classList.remove('is-active');
+    });
+
+    panel.querySelectorAll('.menu-image img.is-visible').forEach(image => {
+      image.classList.remove('is-visible');
+    });
+
+    panel.querySelectorAll('.menu-preview').forEach(preview => {
+      setPreviewMode(preview, null);
+    });
+  }
+
   function getOverlayMaxHeight() {
     const maxHeightVh = Number.parseFloat(
       getComputedStyle(document.documentElement).getPropertyValue('--menu-max-height-vh')
@@ -93,12 +109,16 @@
 
     if (activeMenuId && activeMenuId !== menuId) {
       const previousPanel = getMenuPanel(activeMenuId);
-      if (previousPanel) previousPanel.classList.remove('is-visible');
+      if (previousPanel) {
+        previousPanel.classList.remove('is-visible');
+        resetPanelState(previousPanel);
+      }
       setNavLinkState(activeMenuId, false);
     }
 
     activeMenuId = menuId;
     setNavLinkState(menuId, true);
+    resetPanelState(panel);
     syncOverlayHeight(menuId);
 
     overlay.classList.add('is-open');
@@ -115,6 +135,7 @@
   function closeMenu() {
     if (!overlay || !nav || !activeMenuId) return;
 
+    panels.forEach(panel => resetPanelState(panel));
     hideAllPanels();
     clearNavLinkState();
 
@@ -171,16 +192,51 @@
   function swapImagePreview(imgElement, src) {
     if (!imgElement || !src) return;
 
-    if (imgElement.getAttribute('src') === src) {
+    const currentSrc = imgElement.getAttribute('src');
+
+    if (currentSrc === src) {
       imgElement.classList.add('is-visible');
       return;
     }
 
-    imgElement.classList.remove('is-visible');
-    imgElement.addEventListener('transitionend', () => {
+    const revealImage = () => {
       imgElement.setAttribute('src', src);
       imgElement.classList.add('is-visible');
-    }, { once: true });
+    };
+
+    if (!currentSrc || !imgElement.classList.contains('is-visible')) {
+      revealImage();
+      return;
+    }
+
+    imgElement.classList.remove('is-visible');
+    imgElement.addEventListener('transitionend', revealImage, { once: true });
+  }
+
+  function setPreviewMode(container, mode) {
+    if (!container) return;
+
+    container.classList.toggle('is-image-visible', mode === 'image');
+    container.classList.toggle('is-detail-visible', mode === 'detail');
+  }
+
+  function updateDetailPreview(container, item) {
+    if (!container || !item) return;
+
+    const text = item.dataset.detailText;
+    if (!text) return;
+
+    const textElement = container.querySelector('.menu-detail__text');
+    if (textElement) {
+      textElement.innerHTML = '';
+      text.split('||').map(block => block.trim()).filter(Boolean).forEach(block => {
+        const paragraph = document.createElement('p');
+        paragraph.textContent = block;
+        textElement.appendChild(paragraph);
+      });
+    }
+
+    setPreviewMode(container, 'detail');
   }
 
   function bindPreviewList(listSelector, itemSelector, targetAttribute) {
@@ -189,17 +245,24 @@
       if (!targetId) return;
 
       const container = document.getElementById(targetId);
-      const imgElement = container ? container.querySelector('img') : null;
-      if (!imgElement) return;
-
       const items = Array.from(list.querySelectorAll(itemSelector));
+      const previewMode = list.dataset.previewMode || 'image';
+      const imgElement = container ? container.querySelector('img') : null;
+
+      if (!container) return;
+      if (previewMode === 'image' && !imgElement) return;
 
       items.forEach(item => {
         const activate = () => {
-          const src = item.dataset.img;
-          if (!src) return;
+          if (previewMode === 'detail') {
+            updateDetailPreview(container, item);
+          } else {
+            const src = item.dataset.img;
+            if (!src) return;
+            swapImagePreview(imgElement, src);
+            setPreviewMode(container, 'image');
+          }
 
-          swapImagePreview(imgElement, src);
           items.forEach(entry => entry.classList.remove('is-active'));
           item.classList.add('is-active');
         };
@@ -322,6 +385,7 @@
 
   bindDesktopMenu();
   bindPreviewList('.menu-list[data-image-target]', '.menu-list__item[data-img]', 'imageTarget');
+  bindPreviewList('.menu-list[data-preview-target]', '.menu-list__item', 'previewTarget');
   initCookieBanner();
   bindMobileMenu();
   bindPreviewList('.mobile-item-list[data-image]', '.mobile-item[data-img]', 'image');
