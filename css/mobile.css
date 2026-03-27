@@ -1,0 +1,333 @@
+/* ============================================================
+   ULTREIA — Mobile styles (≤ 768px)
+   ============================================================ */
+
+/* ── Mobile nav additions ───────────────────────────────── */
+
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.nav__burger span {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--color-text);
+  transform-origin: center;
+  transition:
+    transform var(--duration-med) var(--ease-out),
+    opacity var(--duration-fast) ease;
+}
+
+.nav__burger.is-open span:nth-child(1) {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+.nav__burger.is-open span:nth-child(2) {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
+/* ── Mobile menu ─────────────────────────────────────────── */
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  top: var(--nav-height);
+  z-index: 80;
+  background: var(--color-overlay);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  overflow: hidden;
+  transform: translateX(100%);
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.mobile-menu.is-open {
+  transform: translateX(0);
+}
+
+/* ── Levels ──────────────────────────────────────────────── */
+
+.mobile-level {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px calc(var(--footer-height) + 24px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transform: translateX(0);
+  transition: transform var(--duration-med) var(--ease-out);
+}
+
+.mobile-level[hidden] {
+  display: none;
+}
+
+.mobile-level.is-entering {
+  display: flex;
+  transform: translateX(100%);
+}
+
+.mobile-level.is-active {
+  transform: translateX(0);
+}
+
+.mobile-level.is-exiting {
+  transform: translateX(-30%);
+}
+
+/* ── Level 1: section list ───────────────────────────────── */
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 16px;
+}
+
+.mobile-nav-item {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--color-text-dim);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: color var(--duration-fast) ease;
+}
+
+.mobile-nav-item::after {
+  content: '→';
+  font-size: 1rem;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition:
+    opacity var(--duration-fast) ease,
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.mobile-nav-item:hover,
+.mobile-nav-item:active {
+  color: var(--color-text);
+}
+
+.mobile-nav-item:hover::after,
+.mobile-nav-item:active::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mobile-nav-item a {
+  display: block;
+  width: 100%;
+  color: inherit;
+}
+
+/* ── Back button ─────────────────────────────────────────── */
+
+.mobile-back {
+  font-size: var(--font-size-nav);
+  letter-spacing: var(--letter-spacing-nav);
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+  margin-bottom: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color var(--duration-fast) ease;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.mobile-back:hover {
+  color: var(--color-text);
+}
+
+/* ── Level 2: sub-menu ───────────────────────────────────── */
+
+.mobile-sub-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 24px;
+}
+
+.mobile-sub-lists {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mobile-sub-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-sub-label {
+  font-size: var(--font-size-label);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
+.mobile-sub-desc {
+  font-size: var(--font-size-body);
+  line-height: 1.65;
+  color: var(--color-text-dim);
+}
+
+/* ── Mobile item list ────────────────────────────────────── */
+
+.mobile-item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mobile-item {
+  font-size: 1.125rem;
+  color: var(--color-text-dim);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: color var(--duration-fast) ease;
+}
+
+.mobile-item:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.mobile-item:hover,
+.mobile-item.is-active {
+  color: var(--color-text);
+}
+
+.mobile-item a {
+  display: block;
+  width: 100%;
+  color: inherit;
+}
+
+.mobile-list-link {
+  font-size: var(--font-size-label);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+  margin-top: 16px;
+  display: inline-block;
+  cursor: pointer;
+  transition: color var(--duration-fast) ease;
+}
+
+.mobile-list-link:hover {
+  color: var(--color-text);
+}
+
+/* ── Mobile image ────────────────────────────────────────── */
+
+.mobile-sub-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+.mobile-sub-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity var(--duration-med) ease;
+}
+
+.mobile-sub-image img.is-visible {
+  opacity: 1;
+}
+
+/* ── Responsive breakpoint ───────────────────────────────── */
+
+@media (max-width: 768px) {
+  body {
+    overflow: hidden;
+  }
+
+  /* Hide desktop nav links */
+  .nav__links,
+  .nav__contact {
+    display: none;
+  }
+
+  /* Show burger */
+  .nav__burger {
+    display: flex;
+  }
+
+  /* Show mobile menu */
+  .mobile-menu {
+    display: block;
+  }
+
+  /* Hide desktop menu overlay */
+  .menu-overlay {
+    display: none;
+  }
+
+  /* Hero text repositioned */
+  .hero {
+    align-items: flex-end;
+    padding-bottom: calc(var(--footer-height) + 32px);
+  }
+
+  .hero__text {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 24px;
+    font-size: 0.75rem;
+  }
+
+  /* Footer bar simplified on mobile */
+  .footer-bar {
+    padding: 0 16px;
+  }
+
+  .footer-bar__center {
+    display: none;
+  }
+
+  .footer-bar__copy {
+    display: none;
+  }
+
+  /* Cookie banner */
+  .cookie-banner {
+    bottom: calc(var(--footer-height) + 8px);
+    left: 12px;
+    max-width: 200px;
+    font-size: 0.6875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-nav-item {
+    font-size: 1.625rem;
+  }
+}

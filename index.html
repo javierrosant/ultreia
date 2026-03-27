@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/mobile.css">
 </head>
 <body>
 
@@ -55,7 +56,155 @@
     <div class="nav__contact">
       <a href="pages/contacto.html" class="nav__link">Contacto</a>
     </div>
+
+    <!-- Hamburger (mobile only) -->
+    <button class="nav__burger" id="nav-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span>
+      <span></span>
+    </button>
   </nav>
+
+  <!-- ── Mobile menu ──────────────────────────────────────── -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+
+    <!-- Level 1: section list -->
+    <div class="mobile-level" id="mobile-level-1" data-level="1">
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item" data-target="mobile-eventos">Eventos</li>
+        <li class="mobile-nav-item" data-target="mobile-management">Management</li>
+        <li class="mobile-nav-item" data-target="mobile-booking">Booking y Ticketing</li>
+        <li class="mobile-nav-item" data-target="mobile-festival">Festival</li>
+        <li class="mobile-nav-item" data-target="mobile-agenda">Agenda</li>
+        <li class="mobile-nav-item"><a href="pages/contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+
+    <!-- Level 2: Eventos -->
+    <div class="mobile-level mobile-level--sub" id="mobile-eventos" data-level="2" hidden>
+      <button class="mobile-back">← Eventos</button>
+      <div class="mobile-sub-content">
+        <div class="mobile-sub-lists">
+          <div class="mobile-sub-group">
+            <p class="mobile-sub-label">Eventos Privados</p>
+            <ul class="mobile-item-list" data-image="mobile-img-eventos">
+              <li class="mobile-item" data-img="images/eventos/privado-01.jpg">Evento 001</li>
+              <li class="mobile-item" data-img="images/eventos/privado-02.jpg">Evento 002</li>
+              <li class="mobile-item" data-img="images/eventos/privado-03.jpg">Evento 003</li>
+              <li class="mobile-item" data-img="images/eventos/privado-04.jpg">Evento 004</li>
+              <li class="mobile-item" data-img="images/eventos/privado-05.jpg">Evento 005</li>
+            </ul>
+          </div>
+          <div class="mobile-sub-group">
+            <p class="mobile-sub-label">Eventos Públicos</p>
+            <ul class="mobile-item-list" data-image="mobile-img-eventos">
+              <li class="mobile-item" data-img="images/eventos/publico-01.jpg">Evento 001</li>
+              <li class="mobile-item" data-img="images/eventos/publico-02.jpg">Evento 002</li>
+              <li class="mobile-item" data-img="images/eventos/publico-03.jpg">Evento 003</li>
+              <li class="mobile-item" data-img="images/eventos/publico-04.jpg">Evento 004</li>
+              <li class="mobile-item" data-img="images/eventos/publico-05.jpg">Evento 005</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mobile-sub-image" id="mobile-img-eventos">
+          <img src="" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 2: Management -->
+    <div class="mobile-level mobile-level--sub" id="mobile-management" data-level="2" hidden>
+      <button class="mobile-back">← Management</button>
+      <div class="mobile-sub-content">
+        <div class="mobile-sub-lists">
+          <div class="mobile-sub-group">
+            <p class="mobile-sub-desc">Acompañamos a artistas en el desarrollo integral de su proyecto, conectándolos con los profesionales adecuados en cada fase.</p>
+            <ul class="mobile-item-list" data-image="mobile-img-management">
+              <li class="mobile-item" data-img="images/management/produccion.jpg">Producción musical</li>
+              <li class="mobile-item" data-img="images/management/identidad.jpg">Desarrollo creativo / identidad visual</li>
+              <li class="mobile-item" data-img="images/management/audiovisual.jpg">Proyectos audiovisuales</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mobile-sub-image" id="mobile-img-management">
+          <img src="" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 2: Booking -->
+    <div class="mobile-level mobile-level--sub" id="mobile-booking" data-level="2" hidden>
+      <button class="mobile-back">← Booking y Ticketing</button>
+      <div class="mobile-sub-content">
+        <div class="mobile-sub-lists">
+          <div class="mobile-sub-group">
+            <p class="mobile-sub-desc">Nos encargamos de la gestión integral, definiendo la estrategia de venta de entradas y coordinando la contratación de artistas.</p>
+            <ul class="mobile-item-list" data-image="mobile-img-booking">
+              <li class="mobile-item" data-img="images/booking/artistas.jpg">Búsqueda y selección de artistas</li>
+              <li class="mobile-item" data-img="images/booking/caches.jpg">Cachés</li>
+              <li class="mobile-item" data-img="images/booking/riders.jpg">Condiciones técnicas y Riders</li>
+              <li class="mobile-item" data-img="images/booking/coordinacion.jpg">Coordinación de fechas, horarios y logística</li>
+              <li class="mobile-item" data-img="images/booking/plataforma.jpg">Selección de plataforma de venta</li>
+              <li class="mobile-item" data-img="images/booking/config.jpg">Configuración del evento</li>
+              <li class="mobile-item" data-img="images/booking/aforo.jpg">Control de aforo</li>
+              <li class="mobile-item" data-img="images/booking/fases.jpg">Definir fases de lanzamiento</li>
+              <li class="mobile-item" data-img="images/booking/precios.jpg">Optimizar precios</li>
+              <li class="mobile-item" data-img="images/booking/campanas.jpg">Coordinar campañas con marketing</li>
+              <li class="mobile-item" data-img="images/booking/ventas.jpg">Análisis de ventas</li>
+              <li class="mobile-item" data-img="images/booking/ajustes.jpg">Ajustes en tiempo real y Reportes</li>
+            </ul>
+            <span class="mobile-list-link">Acceso a la ticketera →</span>
+          </div>
+        </div>
+        <div class="mobile-sub-image" id="mobile-img-booking">
+          <img src="" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 2: Festival -->
+    <div class="mobile-level mobile-level--sub" id="mobile-festival" data-level="2" hidden>
+      <button class="mobile-back">← Festival</button>
+      <div class="mobile-sub-content">
+        <div class="mobile-sub-lists">
+          <div class="mobile-sub-group">
+            <p class="mobile-sub-desc">De forma anual celebramos un evento que reúne a artistas, profesionales y agentes del panorama musical.</p>
+            <ul class="mobile-item-list" data-image="mobile-img-festival">
+              <li class="mobile-item" data-img="images/festival/2023.jpg">Ultreia 2023</li>
+              <li class="mobile-item" data-img="images/festival/2025.jpg">Ultreia 2025</li>
+              <li class="mobile-item" data-img="images/festival/2026.jpg">Ultreia 2026</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mobile-sub-image" id="mobile-img-festival">
+          <img src="" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 2: Agenda -->
+    <div class="mobile-level mobile-level--sub" id="mobile-agenda" data-level="2" hidden>
+      <button class="mobile-back">← Agenda</button>
+      <div class="mobile-sub-content">
+        <div class="mobile-sub-lists">
+          <div class="mobile-sub-group">
+            <p class="mobile-sub-desc">Explora nuestra agenda y descubre a los artistas emergentes que están dando forma a lo que viene.</p>
+            <ul class="mobile-item-list" data-image="mobile-img-agenda">
+              <li class="mobile-item" data-img="images/agenda/mail.jpg">
+                <a href="mailto:info@ultreia.es">mail</a>
+              </li>
+              <li class="mobile-item" data-img="images/agenda/instagram.jpg">
+                <a href="https://instagram.com/ultreia" target="_blank" rel="noopener">instagram</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="mobile-sub-image" id="mobile-img-agenda">
+          <img src="" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /mobile-menu -->
 
   <!-- ── Menu overlay ────────────────────────────────────── -->
   <div class="menu-overlay" id="menu-overlay" aria-hidden="true">

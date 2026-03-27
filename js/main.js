@@ -179,4 +179,135 @@
 
   initCookieBanner();
 
+  /* ── Mobile menu ─────────────────────────────────────────── */
+
+  const burger       = document.getElementById('nav-burger');
+  const mobileMenu   = document.getElementById('mobile-menu');
+  const level1       = document.getElementById('mobile-level-1');
+  const mobileNavItems = document.querySelectorAll('.mobile-nav-item[data-target]');
+  const mobileBackBtns = document.querySelectorAll('.mobile-back');
+
+  let currentSubLevel = null;
+
+  function openMobileMenu() {
+    mobileMenu.removeAttribute('aria-hidden');
+    mobileMenu.classList.add('is-open');
+    burger.classList.add('is-open');
+    burger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+
+    // Ensure level 1 is visible
+    level1.removeAttribute('hidden');
+    level1.classList.add('is-active');
+  }
+
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('is-open');
+    burger.classList.remove('is-open');
+    burger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+
+    // Reset levels after transition
+    setTimeout(() => {
+      if (currentSubLevel) {
+        currentSubLevel.setAttribute('hidden', '');
+        currentSubLevel.classList.remove('is-active');
+        currentSubLevel = null;
+      }
+      level1.classList.remove('is-exiting');
+    }, 400);
+  }
+
+  function openSubLevel(targetId) {
+    const sub = document.getElementById(targetId);
+    if (!sub) return;
+
+    currentSubLevel = sub;
+
+    // Animate level 1 out
+    level1.classList.add('is-exiting');
+
+    // Animate sub in
+    sub.removeAttribute('hidden');
+    sub.classList.add('is-entering');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        sub.classList.remove('is-entering');
+        sub.classList.add('is-active');
+      });
+    });
+
+    // Hide level 1 after transition
+    setTimeout(() => {
+      level1.setAttribute('hidden', '');
+      level1.classList.remove('is-exiting');
+    }, 350);
+  }
+
+  function closeSubLevel() {
+    if (!currentSubLevel) return;
+
+    const sub = currentSubLevel;
+
+    // Animate sub out
+    sub.classList.remove('is-active');
+    sub.classList.add('is-entering'); // reuse slide-right class
+
+    // Animate level 1 back in
+    level1.removeAttribute('hidden');
+    level1.classList.remove('is-exiting');
+
+    setTimeout(() => {
+      sub.setAttribute('hidden', '');
+      sub.classList.remove('is-entering');
+      currentSubLevel = null;
+    }, 350);
+  }
+
+  if (burger) {
+    burger.addEventListener('click', () => {
+      if (mobileMenu.classList.contains('is-open')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+  }
+
+  mobileNavItems.forEach(item => {
+    item.addEventListener('click', () => openSubLevel(item.dataset.target));
+  });
+
+  mobileBackBtns.forEach(btn => {
+    btn.addEventListener('click', closeSubLevel);
+  });
+
+  // Mobile image tap
+  document.querySelectorAll('.mobile-item[data-img]').forEach(item => {
+    const list = item.closest('.mobile-item-list');
+    if (!list) return;
+    const containerId = list.dataset.image;
+    const container   = document.getElementById(containerId);
+    if (!container) return;
+    const imgEl = container.querySelector('img');
+    if (!imgEl) return;
+
+    item.addEventListener('click', () => {
+      const src = item.dataset.img;
+      if (!src) return;
+
+      if (imgEl.getAttribute('src') !== src) {
+        imgEl.classList.remove('is-visible');
+        imgEl.addEventListener('transitionend', () => {
+          imgEl.setAttribute('src', src);
+          imgEl.classList.add('is-visible');
+        }, { once: true });
+      }
+
+      list.querySelectorAll('.mobile-item').forEach(i => i.classList.remove('is-active'));
+      item.classList.add('is-active');
+    });
+  });
+
 })();
