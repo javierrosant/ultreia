@@ -1,3 +1,7 @@
+## Session Workflow
+
+- Before starting work in a new session, run `git pull` in this repository to sync with remote changes before making edits.
+
 <!-- VERCEL BEST PRACTICES START -->
 ## Best practices for developing on Vercel
 
