@@ -33,6 +33,7 @@
     let activeMenuId = null;
     let closeTimer = null;
     let currentSubLevel = null;
+    let menuOpenToken = 0;
 
     function getMenuPanel(menuId) {
       return document.getElementById(`menu-${menuId}`);
@@ -65,8 +66,18 @@
       item.classList.remove('is-active');
     });
 
-    panel.querySelectorAll('.menu-image img.is-visible').forEach(image => {
+    panel.querySelectorAll('.menu-image').forEach(container => {
+      container.classList.remove('has-content');
+    });
+
+    panel.querySelectorAll('.menu-image img').forEach(image => {
+      if (image._swapHandler) {
+        image.removeEventListener('transitionend', image._swapHandler);
+        image._swapHandler = null;
+      }
+
       image.classList.remove('is-visible');
+      image.removeAttribute('src');
     });
 
     panel.querySelectorAll('.menu-preview').forEach(preview => {
@@ -113,16 +124,19 @@
       if (!overlay || !nav) return;
 
     window.clearTimeout(closeTimer);
+    menuOpenToken += 1;
+    const currentToken = menuOpenToken;
 
     const panel = getMenuPanel(menuId);
     if (!panel) return;
 
+    panels.forEach(entry => {
+      if (entry === panel) return;
+      entry.classList.remove('is-visible');
+      resetPanelState(entry);
+    });
+
     if (activeMenuId && activeMenuId !== menuId) {
-      const previousPanel = getMenuPanel(activeMenuId);
-      if (previousPanel) {
-        previousPanel.classList.remove('is-visible');
-        resetPanelState(previousPanel);
-      }
       setNavLinkState(activeMenuId, false);
     }
 
@@ -137,6 +151,7 @@
 
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
+        if (currentToken !== menuOpenToken || activeMenuId !== menuId) return;
         panel.classList.add('is-visible');
       });
     });
@@ -145,6 +160,7 @@
     function closeMenu() {
       if (!overlay || !nav || !activeMenuId) return;
 
+    menuOpenToken += 1;
     panels.forEach(panel => resetPanelState(panel));
     hideAllPanels();
     clearNavLinkState();
@@ -202,16 +218,28 @@
     function swapImagePreview(imgElement, src) {
       if (!imgElement || !src) return;
 
+    const container = imgElement.closest('.menu-image');
+    imgElement.dataset.swapToken = String((Number(imgElement.dataset.swapToken || '0') + 1));
+    const currentToken = imgElement.dataset.swapToken;
+
+    if (imgElement._swapHandler) {
+      imgElement.removeEventListener('transitionend', imgElement._swapHandler);
+      imgElement._swapHandler = null;
+    }
+
     const currentSrc = imgElement.getAttribute('src');
 
     if (currentSrc === src) {
+      if (container) container.classList.add('has-content');
       imgElement.classList.add('is-visible');
       return;
     }
 
     const revealImage = () => {
+      if (imgElement.dataset.swapToken !== currentToken) return;
       imgElement.setAttribute('src', src);
       imgElement.classList.add('is-visible');
+      if (container) container.classList.add('has-content');
     };
 
     if (!currentSrc || !imgElement.classList.contains('is-visible')) {
@@ -220,7 +248,12 @@
     }
 
     imgElement.classList.remove('is-visible');
-    imgElement.addEventListener('transitionend', revealImage, { once: true });
+    imgElement._swapHandler = () => {
+      imgElement.removeEventListener('transitionend', imgElement._swapHandler);
+      imgElement._swapHandler = null;
+      revealImage();
+    };
+    imgElement.addEventListener('transitionend', imgElement._swapHandler, { once: true });
     }
 
     function setPreviewMode(container, mode) {

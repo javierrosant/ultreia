@@ -384,6 +384,19 @@
   border: 1px solid var(--color-border);
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--duration-med) ease,
+    visibility 0s linear var(--duration-med);
+}
+
+.menu-image.has-content {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity var(--duration-med) ease,
+    visibility 0s linear 0s;
 }
 
 .menu-image img {
@@ -403,6 +416,11 @@
 .menu-preview {
   width: 100%;
   position: relative;
+  min-height: 0;
+}
+
+.menu-preview.is-image-visible,
+.menu-preview.is-detail-visible {
   min-height: 320px;
 }
 
